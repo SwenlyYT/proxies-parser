@@ -11,35 +11,44 @@ HEADERS = {
     'user-agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:87.0) Gecko/20100101 Firefox/87.0'
 }
 
+print()
+
 try:
     f = open('http.txt', 'r')
     h_read = f.read()
     f.close()
 except:
+    print('Создаю http.txt')
     open('http.txt', 'w').write('')
     f = open('http.txt', 'r')
     h_read = f.read()
     f.close()
+    sleep(1)
 try:
     f = open('socks4.txt', 'r')
     s4_read = f.read()
     f.close()
 except:
+    print('Создаю socks4.txt')
     open('socks4.txt', 'w').write('')
     f = open('socks4.txt', 'r')
     s4_read = f.read()
     f.close()
+    sleep(1)
 try:
     f = open('socks5.txt', 'r')
     s5_read = f.read()
     f.close()
 except:
+    print('Создаю socks5.txt')
     open('socks5.txt', 'w').write('')
     f = open('socks5.txt', 'r')
     s5_read = f.read()
     f.close()
+    sleep(1)
 
 #!Socks4
+print()
 sleep(1)
 print('Парсю socks4...')
 
@@ -97,6 +106,7 @@ print('Успешно!')
 
 #!Socks5
 sleep(1)
+print()
 print('Парсю socks5...')
 
 with open('socks5.txt', 'a') as file:
@@ -158,6 +168,7 @@ print('Успешно!')
 
 #! HTTP
 sleep(1)
+print()
 print('Парсю http...')
 
 with open('http.txt', 'a') as file:
