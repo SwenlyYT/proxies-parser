@@ -39,6 +39,7 @@ except:
     s5_read = f.read()
     f.close()
 
+#!Socks4
 sleep(1)
 print('Парсю socks4...')
 
@@ -81,8 +82,20 @@ while True:
     except Exception as e:
         break
 
+r = requests.get(f'https://github.com/TheSpeedX/PROXY-List/blob/master/socks4.txt', headers=HEADERS)
+soup = BS(r.content, 'html.parser')
+
+proxies = soup.find_all('tr')
+
+with open('socks4.txt', 'a') as file:
+    for i in proxies:
+        proxy = i.text.split('\n')[2]
+        if proxy in open('socks4.txt', 'r').read(): continue
+        file.write(proxy)
+
 print('Успешно!')
 
+#!Socks5
 sleep(1)
 print('Парсю socks5...')
 
@@ -130,16 +143,20 @@ soup = BS(r.content, 'html.parser')
 
 proxies = soup.find('table', class_='table table-striped table-bordered').find('tbody').find_all('tr')
 
+r = requests.get(f'https://github.com/TheSpeedX/PROXY-List/blob/master/socks5.txt', headers=HEADERS)
+soup = BS(r.content, 'html.parser')
+
+proxies = soup.find_all('tr')
+
 with open('socks5.txt', 'a') as file:
     for i in proxies:
-        _proxy = i.find('td')
-        _port = i.find_next('td').text
-        _proxy = _proxy.text
-        proxy = _proxy + ':' + _port
-        file.write('\n' + proxy)
+        proxy = i.text.split('\n')[2]
+        if proxy in open('socks5.txt', 'r').read(): continue
+        file.write(proxy)
 
 print('Успешно!')
 
+#! HTTP
 sleep(1)
 print('Парсю http...')
 
@@ -180,5 +197,16 @@ while True:
 
     except Exception as e:
         break
+
+r = requests.get(f'https://github.com/TheSpeedX/PROXY-List/blob/master/http.txt', headers=HEADERS)
+soup = BS(r.content, 'html.parser')
+
+proxies = soup.find_all('tr')
+
+with open('http.txt', 'a') as file:
+    for i in proxies:
+        proxy = i.text.split('\n')[2]
+        if proxy in open('http.txt', 'r').read(): continue
+        file.write(proxy)
 
 print('Успешно!')
