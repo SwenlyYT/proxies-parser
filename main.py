@@ -39,9 +39,9 @@ except:
     s5_read = f.read()
     f.close()
 
+sleep(1)
+print('Парсю socks4...')
 
-sleep(3)
-print('Парсю прокси...')
 with open('socks4.txt', 'a') as file:
     lol = 0
     r = requests.get(f'https://hidemy.name/ru/proxy-list/?type=4#list', headers=HEADERS)
@@ -80,6 +80,11 @@ while True:
 
     except Exception as e:
         break
+
+print('Успешно!')
+
+sleep(1)
+print('Парсю socks5...')
 
 with open('socks5.txt', 'a') as file:
     lol = 0
@@ -120,6 +125,24 @@ while True:
     except Exception as e:
         break
 
+r = requests.get(f'https://www.socks-proxy.net/', headers=HEADERS)
+soup = BS(r.content, 'html.parser')
+
+proxies = soup.find('table', class_='table table-striped table-bordered').find('tbody').find_all('tr')
+
+with open('socks5.txt', 'a') as file:
+    for i in proxies:
+        _proxy = i.find('td')
+        _port = i.find_next('td').text
+        _proxy = _proxy.text
+        proxy = _proxy + ':' + _port
+        file.write('\n' + proxy)
+
+print('Успешно!')
+
+sleep(1)
+print('Парсю http...')
+
 with open('http.txt', 'a') as file:
     lol = 0
     r = requests.get(f'https://hidemy.name/ru/proxy-list/?maxtime=100#list', headers=HEADERS)
@@ -137,7 +160,6 @@ with open('http.txt', 'a') as file:
                 lol = 1
         else:
             file.write(f'\n' + proxy)
-
 while True:
     try:
         with open('http.txt', 'a') as file:
@@ -158,3 +180,5 @@ while True:
 
     except Exception as e:
         break
+
+print('Успешно!')
