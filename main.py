@@ -100,7 +100,7 @@ with open('socks4.txt', 'a') as file:
     for i in proxies:
         proxy = i.text.split('\n')[2]
         if proxy in open('socks4.txt', 'r').read(): continue
-        file.write(proxy)
+        file.write('\n' + proxy)
 
 print('Успешно!')
 
@@ -162,7 +162,7 @@ with open('socks5.txt', 'a') as file:
     for i in proxies:
         proxy = i.text.split('\n')[2]
         if proxy in open('socks5.txt', 'r').read(): continue
-        file.write(proxy)
+        file.write('\n' + proxy)
 
 print('Успешно!')
 
@@ -218,6 +218,6 @@ with open('http.txt', 'a') as file:
     for i in proxies:
         proxy = i.text.split('\n')[2]
         if proxy in open('http.txt', 'r').read(): continue
-        file.write(proxy)
+        file.write('\n' + proxy)
 
 print('Успешно!')
