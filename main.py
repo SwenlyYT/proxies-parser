@@ -102,6 +102,16 @@ with open('socks4.txt', 'a') as file:
         if proxy in open('socks4.txt', 'r').read(): continue
         file.write('\n' + proxy)
 
+r = requests.get(f'https://api.openproxylist.xyz/socks4.txt', headers=HEADERS)
+
+proxies = str(r.content).split(f'\n')[0].split(f'\\n')
+print(proxies)
+
+with open('socks4.txt', 'a') as file:
+    for i in proxies:
+        if i in open('socks4.txt', 'r').read(): continue
+        file.write('\n' + i)
+
 print('Успешно!')
 
 #!Socks5
@@ -221,3 +231,4 @@ with open('http.txt', 'a') as file:
         file.write('\n' + proxy)
 
 print('Успешно!')
+
