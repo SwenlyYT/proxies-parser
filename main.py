@@ -105,7 +105,6 @@ with open('socks4.txt', 'a') as file:
 r = requests.get(f'https://api.openproxylist.xyz/socks4.txt', headers=HEADERS)
 
 proxies = str(r.content).split(f'\n')[0].split(f'\\n')
-print(proxies)
 
 with open('socks4.txt', 'a') as file:
     for i in proxies:
