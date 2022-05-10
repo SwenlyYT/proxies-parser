@@ -5,6 +5,7 @@ import pyfiglet
 
 result = pyfiglet.figlet_format("Proxies Parser")
 result1 = pyfiglet.figlet_format("by Swenly")
+abc = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
 print(f'{result}\n{result1}')
 
 HEADERS = {
@@ -103,12 +104,18 @@ with open('socks4.txt', 'a') as file:
         file.write('\n' + proxy)
 
 r = requests.get(f'https://api.openproxylist.xyz/socks4.txt', headers=HEADERS)
+soup = BS(r.content, 'html.parser')
 
 proxies = str(r.content).split(f'\n')[0].split(f'\\n')
 
 with open('socks4.txt', 'a') as file:
     for i in proxies:
         if i in open('socks4.txt', 'r').read(): continue
+        if '<' in i: continue
+        lol = 0
+        for j in abc:
+            if j in i: lol = 1
+        if lol == 1: continue
         file.write('\n' + i)
 
 print('Успешно!')
